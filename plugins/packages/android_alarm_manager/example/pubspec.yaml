@@ -1,0 +1,15 @@
+name: android_alarm_manager_example
+description: Demonstrates how to use the android_alarm_manager plugin.
+
+dependencies:
+  flutter:
+    sdk: flutter
+  android_alarm_manager:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

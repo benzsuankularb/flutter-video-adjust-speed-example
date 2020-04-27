@@ -14,7 +14,8 @@ class _VideoAppState extends State<VideoApp> {
   final List<String> codecOptions = [".m3u8", ".mp4"];
   final List<String> codecSources = [
     "https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8",
-    "https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_1920_18MG.mp4",
+//    "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_adv_example_hevc/master.m3u8",
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
   ];
   int currentCodecIndex = 0;
 
@@ -109,8 +110,7 @@ class _VideoAppState extends State<VideoApp> {
                           FlatButton(
                             child: Text("<<"),
                             onPressed: () async {
-                              final currentPosition =
-                                  await _controller.position;
+                              final currentPosition = await _controller.position;
                               await _controller.seekTo(
                                 currentPosition - Duration(seconds: 10),
                               );
@@ -121,8 +121,7 @@ class _VideoAppState extends State<VideoApp> {
                           FlatButton(
                             child: Text(">>"),
                             onPressed: () async {
-                              final currentPosition =
-                                  await _controller.position;
+                              final currentPosition = await _controller.position;
                               await _controller.seekTo(
                                 currentPosition + Duration(seconds: 10),
                               );
