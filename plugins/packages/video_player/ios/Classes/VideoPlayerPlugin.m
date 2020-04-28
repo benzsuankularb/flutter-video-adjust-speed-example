@@ -39,6 +39,7 @@ int64_t FLTCMTimeToMillis(CMTime time) {
 @property(nonatomic) CGAffineTransform preferredTransform;
 @property(nonatomic, readonly) bool disposed;
 @property(nonatomic, readonly) bool isPlaying;
+@property(nonatomic, readonly) double previousRate;
 @property(nonatomic) bool isLooping;
 @property(nonatomic, readonly) bool isInitialized;
 - (instancetype)initWithURL:(NSURL*)url frameUpdater:(FLTFrameUpdater*)frameUpdater;
@@ -291,6 +292,7 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
   }
   if (_isPlaying) {
     [_player play];
+    _player.rate = _previousRate;
   } else {
     [_player pause];
   }
@@ -356,6 +358,7 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
 
 - (void)setSpeed:(double)speed result:(FlutterResult)result {
   if (speed == 1.0 || speed == 0.0) {
+    _previousRate = speed;
     _player.rate = speed;
     result(nil);
   } else if (speed < 0 || speed > 2.0) {
@@ -364,6 +367,7 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
                                details:nil]);
   } else if (speed > 1.0 ||
              speed < 1.0) {
+    _previousRate = speed;
     _player.rate = speed;
     result(nil);
   } else {
